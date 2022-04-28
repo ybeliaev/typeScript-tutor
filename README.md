@@ -66,3 +66,18 @@ const address = {
 }
 ```
 ## Array with same types ✨
+```js
+const skills: string[] = ["devOps", "Dev"]
+```
+### Topple
+```js
+const skills: [number, string] = [1,"devOps"]
+const [id, skill] = skills
+// this topple limited to two elements
+// but I can skills.push(10) becouse runtime
+```
+* for random length
+```js
+const skills: [number, string, ...boolean[]] = [1, "devOps", true, true]
+const otherSkills: [number, string] = [1, "devOps", true, true] // also valid
+```
