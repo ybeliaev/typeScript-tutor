@@ -10,3 +10,26 @@ if(num !== number){
     throw new Error("error")
 }
 ```
+## Functions ✨
+```js
+let getFullName = (firstName:string, secondName:string):string => {
+    return `${firstName} ${secondName}`
+}
+```
+## Objects
+```js
+interface ObjValue  {
+    name: string;
+    work: string;
+}
+
+const getUser = (obj: ObjValue): string => {
+    return `${obj.name} is ${obj.work}`
+}
+const user = {
+    name: "John",
+    work: "developer",
+    age: 23
+}
+getUser(user)
+```

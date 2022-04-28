@@ -1,4 +1,10 @@
 "use strict";
-let getFullName = (firstName, secondName) => {
-    return `${firstName} ${secondName}`;
+const getUser = (obj) => {
+    return `${obj.name} is ${obj.work}`;
 };
+const user = {
+    name: "John",
+    work: "developer",
+    age: 23
+};
+getUser(user);
