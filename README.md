@@ -67,7 +67,9 @@ const address = {
 ```
 ## Array with same types ✨
 ```js
-const skills: string[] = ["devOps", "Dev"]
+const arr: string[] = ['1','2','3']
+// or with generic
+const arr: Array<string> = ['1','2','3']
 ```
 ### Topple
 ```js
@@ -81,3 +83,12 @@ const [id, skill] = skills
 const skills: [number, string, ...boolean[]] = [1, "devOps", true, true]
 const otherSkills: [number, string] = [1, "devOps", true, true] // also valid
 ```
+## READONLY ✨
+```js
+const arr: readonly string[] = ['1','2','3']
+arr.push("4") // error Свойство "push" не существует в типе "readonly string[]"
+
+// with generic
+const arr: ReadonlyArray<string> = ['1','2','3']
+```
+## ENUMS ✨
