@@ -71,7 +71,7 @@ const arr: string[] = ['1','2','3']
 // or with generic
 const arr: Array<string> = ['1','2','3']
 ```
-### Topple
+### Tuples
 ```js
 const skills: [number, string] = [1,"devOps"]
 const [id, skill] = skills
@@ -91,4 +91,27 @@ arr.push("4") // error Свойство "push" не существует в ти
 // with generic
 const arr: ReadonlyArray<string> = ['1','2','3']
 ```
-## ENUMS ✨
+## ENUM ✨
+```js
+// 200 - OK, 404 - "Not found", 500 - "Internal Server Error"
+enum StatusCode {
+    OK = 200,
+    NOTFOUND = 404,
+    SERVERERROR = 500
+}
+const result = {
+    message: "It's OK",
+    statusCode: StatusCode.OK
+}
+//cases:
+// 1
+if(result.statusCode === 200){}
+// 2
+function action(status: StatusCode){}
+
+// *** Constant ENUM ***
+const enum Rules {
+    ADMIN=1,
+    USER=2
+}
+```
