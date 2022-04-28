@@ -16,7 +16,7 @@ let getFullName = (firstName:string, secondName:string):string => {
     return `${firstName} ${secondName}`
 }
 ```
-## Objects
+## Objects ✨
 ```js
 interface ObjValue  {
     name: string;
@@ -33,3 +33,36 @@ const user = {
 }
 getUser(user)
 ```
+```js
+interface ContactsValue {
+    phone: string;
+    email: string;
+    city: string
+}
+interface AddressValue  {
+    officeId: number;
+    isOpened: boolean;
+    contacts: ContactsValue
+}
+
+const address = {
+    officeId: 45,
+    isOpened: false,
+    contacts: {
+        phone: "067111222333",
+        email: "jeck@gmail.com",
+        city: "London"
+    }
+}
+// OR
+const address = {
+    officeId: number,
+    isOpened: boolian,
+    contacts: {
+        phone: string,
+        email: string,
+        city: string
+    }
+}
+```
+## Array with same types ✨
