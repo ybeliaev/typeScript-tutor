@@ -1,21 +1,43 @@
-// 200 - OK, 404 - "Not found", 500 - "Internal Server Error"
-enum StatusCode {
-    OK = 200,
-    NOTFOUND = 404,
-    SERVERERROR = 500
+/* Запрос */
+{
+	"topicId": 5,
+	"status": "published" // "draft", "deleted" - optional
 }
-const result = {
-    message: "It's OK",
-    statusCode: StatusCode.OK
+/* Ответ */
+ [
+	{
+		"question": "Как осуществляется доставка?",
+		"answer": "быстро!",
+		"tags": [
+			"popular",
+			"new"
+		],
+		"likes": 3,
+		"status": "published"
+	}
+]
+enum QuestionStatus {
+    Published = "published",
+    Draft = "draft",
+    Deleted = "deleted"
 }
-//cases:
-// 1
-if(result.statusCode === 200){}
-// 2
-function action(status: StatusCode){}
+interface RequestValue {
+    topicId: number,
+    status?: QuestionStatus.Published
+}
+interface AnswerValue {
+    question: string;
+    answer: string;
+    tags: string[];
+    likes: number;
+    status: string;
+}
 
-// *** Constant ENUM ***
-const enum Rules {
-    ADMIN=1,
-    USER=2
+const getFaqs = async (req:RequestValue): Promise<AnswerValue[]> => {
+    const res = await fetch('./faqs', {
+        method: 'POST',
+        body: JSON.stringify(req)
+    })
+    const data = await res.json()
+    return data
 }
