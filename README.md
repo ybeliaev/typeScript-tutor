@@ -162,3 +162,25 @@ const getFaqs = async (req:RequestValue): Promise<AnswerValue[]> => {
     return data
 }
 ```
+## 🔥UNION🔥
+```js
+
+// сужение типов конструкцией if else
+function logID(id: string|number|boolean){
+    if(typeof id === 'string'){
+        console.log(id)
+    }else{
+        console.log (id)
+    }
+}
+function logError(err: string|string[]){
+    if(Array.isArray(err)){
+        return err
+    }
+}
+function logObject(obj: {a:number}|{b:number}){
+    if("a" in obj){
+        return obj.a
+    }
+}
+```
