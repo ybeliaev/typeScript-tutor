@@ -200,3 +200,42 @@ let method = 'post'
 fetchAuth("http", method as "post")// OK, но такая кастомизация - костыль
 
 ```
+## 🔥 Type Aliases 🔥
+```ts
+type httpMethod = "post" | "string"
+
+function fetchAuth(url: string, method: httpMethod): true | false {
+    return true
+}
+// Object
+type User = {
+    name: string,
+    age: number,
+    skills: string[]
+}
+const user: User = {
+    name: "Jore",
+    age: 33,
+    skills: ["js", "php"]
+}
+```
+>Intersection:
+```ts
+type User = {
+    name: string,
+    age: number,
+    skills: string[]
+}
+type UserID = {
+    id: number
+}
+type UserWithID = User & UserID
+// OR
+type UserWithID = User & { id: number}
+const user: UserWithID = {
+    id: 1221,
+    name: "Jore",
+    age: 33,
+    skills: ["js", "php"]
+}
+```
