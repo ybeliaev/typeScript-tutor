@@ -281,3 +281,35 @@ const user: UserwithID = {
     date: new Date(),
 }
 ```
+## 🔥 Interfaces vs Types 🔥
+> I'v merge
+> 
+> This can be a problem for a lot of applications.
+```ts
+interface User {
+    name: string,    
+}
+interface User {
+    id: number
+}
+
+const user: User = {
+    name: "Yura",
+    id: 12
+}
+```
+> interface should not be extended
+```ts
+interface User {
+    name: string,    
+    id: number
+}
+```
+But for use framework (for example Express) extended is well
+_________
+
+> `type` is good for 
+```ts
+type ID = string | number
+```
+> and it dot't merge same types  
