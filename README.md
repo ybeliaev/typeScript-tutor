@@ -162,13 +162,13 @@ const getFaqs = async (req:RequestValue): Promise<AnswerValue[]> => {
     return data
 }
 ```
-## 🔥UNION🔥
+## 🔥 UNION 🔥
 ```js
 
 // сужение типов конструкцией if else
 function logID(id: string|number|boolean){
     if(typeof id === 'string'){
-        console.log(id)
+        console.log(id)// id распознаётся как строка
     }else{
         console.log (id)
     }
@@ -183,4 +183,20 @@ function logObject(obj: {a:number}|{b:number}){
         return obj.a
     }
 }
+```
+## 🔥 Literal Types 🔥
+```ts
+function fetchAuth(url: string, method: "post"|"get"): true | false {
+    return
+}
+fetchAuth("http", "get")
+
+// case 2
+const method = 'post'
+fetchAuth("http", method) // OK, but with let  method = 'post' don't work
+
+// case 3
+let method = 'post'
+fetchAuth("http", method as "post")// OK, но такая кастомизация - костыль
+
 ```
