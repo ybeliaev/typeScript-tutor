@@ -239,3 +239,45 @@ const user: UserWithID = {
     skills: ["js", "php"]
 }
 ```
+## 🔥 Interfaces 🔥
+```ts
+interface User {
+    name: string,
+    age: number,
+    skills: string[]
+}
+interface UserwithID extends User {
+    id: number
+}
+const user: UserwithID = {
+    id: 1212,
+    name: "Jore",
+    age: 33,
+    skills: ["js", "php"]
+}
+```
+> or so
+```ts
+
+interface User {
+    name: string,
+    age: number,
+    skills: string[],
+    log: (i: number) => number
+}
+interface UserID {
+    id: number
+}
+interface UserwithID extends User, UserID {date: Date}
+
+const user: UserwithID = {
+    id: 1212,
+    name: "Jore",
+    age: 33,
+    skills: ["js", "php"],
+    log(i){
+        return i
+    },
+    date: new Date(),
+}
+```
