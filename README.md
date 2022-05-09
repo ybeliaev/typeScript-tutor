@@ -162,7 +162,7 @@ const getFaqs = async (req:RequestValue): Promise<AnswerValue[]> => {
     return data
 }
 ```
-## 🔥 UNION 🔥
+##  UNION ✨
 ```js
 
 // сужение типов конструкцией if else
@@ -184,7 +184,7 @@ function logObject(obj: {a:number}|{b:number}){
     }
 }
 ```
-## 🔥 Literal Types 🔥
+## Literal Types ✨
 ```ts
 function fetchAuth(url: string, method: "post"|"get"): true | false {
     return
@@ -200,7 +200,7 @@ let method = 'post'
 fetchAuth("http", method as "post")// OK, но такая кастомизация - костыль
 
 ```
-## 🔥 Type Aliases 🔥
+## Type Aliases ✨
 ```ts
 type httpMethod = "post" | "string"
 
@@ -239,7 +239,7 @@ const user: UserWithID = {
     skills: ["js", "php"]
 }
 ```
-## 🔥 Interfaces 🔥
+## Interfaces ✨
 ```ts
 interface User {
     name: string,
@@ -281,10 +281,13 @@ const user: UserwithID = {
     date: new Date(),
 }
 ```
-## 🔥 Interfaces vs Types 🔥
-> I'v merge
+## Interfaces vs Types ✨
+### Interfaces:
+>1. I can merge
 > 
-> This can be a problem for a lot of applications.
+>   This can be a problem for a lot of applications.
+> 
+> 2. Best for object
 ```ts
 interface User {
     name: string,    
@@ -292,7 +295,7 @@ interface User {
 interface User {
     id: number
 }
-
+// It's ok:
 const user: User = {
     name: "Yura",
     id: 12
@@ -300,6 +303,7 @@ const user: User = {
 ```
 > interface should not be extended
 ```ts
+// write like this without future extensions
 interface User {
     name: string,    
     id: number
@@ -307,9 +311,60 @@ interface User {
 ```
 But for use framework (for example Express) extended is well
 _________
-
-> `type` is good for 
+### Type:
+> `type` is good for primitive
 ```ts
+// `interface` can't do that
 type ID = string | number
 ```
-> and it dot't merge same types  
+> and it dot't merge same types : 
+```ts
+// Error: Повторяющийся идентификатор "User".ts(2300)
+type User =  {
+    name: string,    
+}
+type User =  {
+    id: number
+}
+```
+## Optional `?`✨
+
+```ts
+//****** 1 *********
+interface User  {
+    name: string,
+    age?: number | string    
+}
+//****** 2 *********
+// Error
+// (parameter) y: number | undefined
+function foo(x: number, y?: number){
+    return x + y
+}
+//solution to the problem:
+// сужение типов
+function foo(x: number, y?: number){
+    if(!y){
+        return x + 0
+    }
+    return x + y
+}
+// OR
+function foo(x: number, y: number = 0){   
+    return x + y
+}
+//****** 3 *********
+interface UserPro  {
+    login: string,
+    password?: {
+        type: "primary" | "secondary"
+    }    
+}
+function foo(user: UserPro){
+    const t = user.password?.type // optional chaining ?. write auto
+}
+//****** 4 *********
+function foo(params?: string){
+    return params ?? 0 // if params =  0 or undefined then 0
+}
+```
