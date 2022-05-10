@@ -368,3 +368,80 @@ function foo(params?: string){
     return params ?? 0 // if params =  0 or undefined then 0
 }
 ```
+## 🔥EXAMPLE🔥
+```ts
+// +++++ request 
+{
+    "sum": 1000,
+    "from": 2,
+    "to": 4
+}
+// +++++ response
+{
+    "status": "success",
+    "data": {
+        "dataBaseID": 567,
+        "sum": 10000,
+        "from": 2,
+        "to": 4
+    }
+},
+{
+    "status": "failed",
+    "data": {
+        "errorrMessage": "not enough money",
+        "errorCode": 4
+    }
+}
+/***************
+ *****case 1****
+****************/
+interface IPayment {
+    sum: number,
+    from: number,
+    to: number
+}
+enum IPaymentStatus {
+    Success= "success",
+    Failed = "failed"
+}
+interface PaymentRequest extends IPayment {}
+
+interface DataSuccess {      
+    dataBaseID: number,
+    sum: number,
+    from: number,
+    to: number
+}
+interface DataFailed {
+    errorrMessage: string,
+    errorCode: number
+}
+// при такой записи предполагаем что может быть status - "success", а data - DataFailed
+// Это не есть good
+interface IResponse {
+    status: IPaymentStatus;
+    data: DataSuccess | DataFailed;
+}
+
+/***************
+ *****case 2****
+****************/
+// check DataSuccess becouse I have dublicate code
+interface DataSuccess extends IPayment {      
+    dataBaseID: number,
+}
+
+
+// check IResponse, IResponse delete:
+interface IResponseSuccess {
+    status: IPaymentStatus.Success;
+    data: DataSuccess;
+}
+interface IResponseFailed {
+    status: IPaymentStatus.Failed;
+    data: DataFailed;
+}
+
+
+```
