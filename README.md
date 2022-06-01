@@ -16,6 +16,20 @@ let getFullName = (firstName:string, secondName:string):string => {
     return `${firstName} ${secondName}`
 }
 ```
+### `void` in function
+```ts
+// ничего не возвращает
+function foo(x: number):void{
+    console.log(x)
+}
+```
+### `never` in function
+```ts
+// даже undefined не вернёт, никогда до конца не выполнится
+function foo():never{
+    throw new Error("error")
+}
+```
 ## Objects ✨
 ```js
 interface ObjValue  {
@@ -86,6 +100,14 @@ permition  = {
 let permition : {
     readonly name: string,    
 }
+```
+### `never` and object
+```ts
+let user: {
+    id?: never, // поле id не допускается
+    name: string
+}
+
 ```
 ## Array with same types ✨
 ```js
@@ -467,3 +489,6 @@ interface IResponseFailed {
 
 
 ```
+## Any ✨
+полезен при переводе проекта с `j`s на `ts`: всем модулям присвоить тип `any` и затем помодульно рефакторить. 
+
