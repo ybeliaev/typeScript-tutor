@@ -65,6 +65,28 @@ const address = {
     }
 }
 ```
+### Case with multiple fields of the same type
+```ts
+let permition : {
+    [propartyName: string] : boolean // propartyName - произвольное название / custom name
+}
+permition={
+    canEdit: true,
+    canView: true,
+    canCreate: true,
+}
+
+permition  = {
+    doIt: true, // ok
+    count: 1 // error
+}
+```
+### `readonly` and object
+```ts
+let permition : {
+    readonly name: string,    
+}
+```
 ## Array with same types ✨
 ```js
 const arr: string[] = ['1','2','3']
